@@ -12,7 +12,17 @@
 #phoneFieldErrArea,
 #emailFieldErrArea,
 #nameFieldErrArea{
-    padding: 10px
+    padding: 10px;
     font-size: 15px;
     color: red;
+}
+
+.bigContactAvatar {
+    padding: 10px;
+    border-radius: 50%;
+    width: 70%;
+    height: 35%;
+    border-bottom-left-radius: 50% !important;
+    border-top-left-radius: 50% !important;
+
 }
