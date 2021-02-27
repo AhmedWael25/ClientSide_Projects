@@ -19,8 +19,10 @@ function Contact(id, name, phone, email, gender, imgUrl) {
 
 window.onload = function () {
 
+//    localStorage.clear();
+    
     fetchContactsFromStorage();
-
+    
     //Display All Contacts From Page , Given The List
 
 }
@@ -90,7 +92,7 @@ function addContact() {
     }
     if (phone == "") {
 
-        $("#phoneFieldErrArea").text("Name Is required");
+        $("#phoneFieldErrArea").text("Phone Is required");
         isFormValid = false;
     } else if (!isPhoneValid(phone)) {
         $("#phoneFieldErrArea").text("Phone is not valid");
@@ -100,7 +102,7 @@ function addContact() {
     }
 
     if (email == "") {
-        $("#emailFieldErrArea").text("Name Is required");
+        $("#emailFieldErrArea").text("Email Is required");
         isFormValid = false;
     } else if (!isEmailValid(email)) {
         $("#emailFieldErrArea").text("Email Is not valid");
