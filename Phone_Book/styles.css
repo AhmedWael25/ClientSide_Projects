@@ -7,3 +7,12 @@
     border-top-left-radius: 50% !important;
     
 }
+
+
+#phoneFieldErrArea,
+#emailFieldErrArea,
+#nameFieldErrArea{
+    padding: 10px
+    font-size: 15px;
+    color: red;
+}
