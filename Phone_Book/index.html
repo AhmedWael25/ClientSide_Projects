@@ -19,7 +19,7 @@
             <div data-role="navbar">
                 <ul>
                     <li><a href="#contactsPage" data-icon="user" data-transition="flow">Home</a></li>
-                    <li><a href="#testPage" data-icon="plus" data-transition="flow"> Add Contact</a></li>
+                    <li><a href="#addContact" data-icon="plus" data-transition="flow"> Add Contact</a></li>
                 </ul>
             </div>
 
@@ -32,41 +32,26 @@
                 <input placeholder="Search Your Contacts!" data-type="search" id="searchForContact">
             </form>
 
-            <ul data-role="listview" data-filter="true" data-inset="true" data-input="#searchForContact" data-split-icon="phone">
+            <ul id="allContacts" data-role="listview" data-filter="true" data-inset="true" data-input="#searchForContact" data-split-icon="phone">
 
                 <li class="contact" data-filtertext="Mostafa yehia"><a href="#">
                         <img class="contactAvatar" src="./assets/cyber.jpg">
                         <h2>Mostafa yehia</h2>
-<!--                        <p>Broken Bells</p>-->
                     </a>
                     <a href="#call" data-rel="popup" data-position-to="window" data-transition="pop">Purchase album</a>
                 </li >
-                <li class="contact"  data-filtertext="Ahmed Wael"><a href="#">
-                        <img class="contactAvatar" src="./assets/cyber.jpg">
-                        <h2>Ahmed Wael</h2>
-<!--                        <p>Hot Chip</p>-->
-                    </a>
-                    <a href="#call" data-rel="popup" data-position-to="window" data-transition="pop">Purchase album</a>
-                </li>
-                <li  data-filtertext="Mostafa yehia" class="contact"><a href="#">
-                        <img class="contactAvatar" src="./assets/cyber.jpg">
-                        <h2>Mostafa yehia</h2>
-<!--                        <p>Phoenix</p>-->
-                    </a>
-                    <a href="#call" data-rel="popup" data-position-to="window" data-transition="pop">Purchase album</a>
-                </li>
-
+                
             </ul>
 
-
         </div>
-
         <div data-role="footer">
             <h5>&copy; Arch. 2021</h5>
         </div>
     </div>
     <!--    PPOOOOOOOOOOOOOOOOP UPPPPPPPPPPPPPPPPP-->
 
+   
+<!--
 
 
     <div data-role="popup" id="call" data-theme="d" data-overlay-theme="d" class="ui-content" style="max-width:340px; padding-bottom:2em;">
@@ -75,10 +60,14 @@
         <a href="#" data-rel="back" class="ui-shadow ui-button ui-corner-all ui-button-b ui-button-inline ui-mini">Buy: $10.99 <span class="ui-icon ui-icon-check"></span></a>
         <a href="#" data-rel="back" class="ui-shadow ui-button ui-corner-all ui-button-inline ui-mini">Cancel</a>
     </div>
+-->
 
 
+   
+   
+   
     <!--   -------------SECOND PAGE ------------------>
-    <div data-role="page" data-theme="d" id="testPage">
+    <div data-role="page" data-theme="d" id="addContact">
         <div data-role="header" data-position="inline">
             <h1>Add Contact</h1>
             <div data-role="navbar">
@@ -88,13 +77,44 @@
                 </ul>
             </div>
 
-
         </div>
 
         <div data-role="main" class="ui-content">
 
-            <h1>Cont</h1>
-
+            <div data-role="fieldcontain">
+                <label for="nameField">Name</label>
+                <input name="nameField" type="text" id="nameField" placeholder="Enter Contact Name" >
+            </div>
+            
+            <div data-role="fieldcontain">
+                <label for="phoneField">Phone</label>
+                <input name="phoneField" type="tel" id="phoneField" placeholder="01xxxxxxxxx">
+            </div>
+            
+            <div data-role="fieldcontain">
+                <label for="emailField">Phone</label>
+                <input name="emailField" type="email" id="emailField" placeholder="Enter Contact Email">
+            </div>
+            
+            <div data-role="fieldcontain">
+                <label for="genderField">Gender</label>
+                <select name="genderField" id="genderField" data-theme="d" data-role="flipswitch">
+                    <option  value="male">M</option>
+                    <option value="female">F</option>
+                </select>
+                <p></p>
+            </div>
+            
+            <div data-role="fieldcontain" data-type="horizontal">
+               
+                <a href="#contactsPage" class="ui-btn ui-corner-all ui-icon-plus ui-btn-icon-left" data-role="button" data-inline="true" onclick="addContact()">Save</a>
+                
+                <a href="#contactsPage" class="ui-btn ui-corner-all ui-icon-delete ui-btn-icon-left"  data-role="button" data-inline="true" onclick="cancelAdding()">Cancel</a>
+                
+            </div>
+            
+            
+    
         </div>
 
 
@@ -104,10 +124,14 @@
         </div>
 
     </div>
+    
+    
 
 
+<script src="script.js"></script>
+</body>
 
-</body></html>
+</html>
 
 
 
