@@ -56,7 +56,7 @@ function displayAllContacts(list) {
 
     for (var i = 0; i < list.length; i++) {
 
-        var html = " <li id='" + list[i].id + "' class='contact' data-filtertext='" + list[i].name + "'><a href='#'><img class='contactAvatar' src='" + list[i].imgUrl + "'><h2>" + list[i].name + "</h2></a> <a href='tel:"+list[i].phone+"' data-rel='popup' data-position-to='window' data-transition='pop'>Purchase album</a></li >";
+        var html = " <li id='" + list[i].id + "' class='contact' data-filtertext='" + list[i].name + "'><a href='#contactDetails'><img class='contactAvatar' src='" + list[i].imgUrl + "'><h2>" + list[i].name + "</h2></a> <a href='tel:"+list[i].phone+"' data-rel='popup' data-position-to='window' data-transition='pop'>Purchase album</a></li >";
 
         ulList.append(html).listview("refresh");
     }
@@ -168,3 +168,6 @@ function isEmailValid(email) {
 function isNameValid(name) {
 
 }
+
+
+

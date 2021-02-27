@@ -4,9 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>jQuery Mobile: Theme Download</title>
-    <link rel="stylesheet" href="./themes/PhoneBook.min.css" />
-    <link rel="stylesheet" href="./themes/jquery.mobile.icons.min.css" />
-    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css" />
+    <link rel="stylesheet" href="./themes/PhoneBook.min.css"/>
+    <link rel="stylesheet" href="./themes/jquery.mobile.icons.min.css"/>
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile.structure-1.4.5.min.css"/>
     <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
     <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
@@ -14,35 +14,36 @@
 </head>
 
 <body>
-    <div data-role="page" data-theme="d" id="contactsPage">
-        <div data-role="header" data-position="inline">
-            <h1>Contact List</h1>
-            <div data-role="navbar">
-                <ul>
-                    <li><a href="#contactsPage" data-icon="user" data-transition="flow">Home</a></li>
-                    <li><a href="#addContact" data-icon="plus" data-transition="flow"> Add Contact</a></li>
-                </ul>
-            </div>
-
-        </div>
-        <div data-role="main" class="ui-content">
-
-            <h1>Your Contacts:</h1>
-            <br>
-            <form>
-                <input placeholder="Search Your Contacts!" data-type="search" id="searchForContact">
-            </form>
-
-            <ul id="allContacts" data-role="listview" data-filter="true" data-inset="true" data-input="#searchForContact" data-split-icon="phone">
-
+<div data-role="page" data-theme="d" id="contactsPage" data-add-back-btn = "true">
+    <div data-role="header" data-position="inline">
+        <h1>Contact List</h1>
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#contactsPage" data-icon="user" data-transition="flow">Home</a></li>
+                <li><a href="#addContact" data-icon="plus" data-transition="flow"> Add Contact</a></li>
             </ul>
+        </div>
 
-        </div>
-        <div data-role="footer" data-position="fixed">
-            <h5>&copy; Arch. 2021</h5>
-        </div>
     </div>
-    <!--    PPOOOOOOOOOOOOOOOOP UPPPPPPPPPPPPPPPPP-->
+    <div data-role="main" class="ui-content">
+
+        <h1>Your Contacts:</h1>
+        <br>
+        <form>
+            <input placeholder="Search Your Contacts!" data-type="search" id="searchForContact">
+        </form>
+
+        <ul id="allContacts" data-role="listview" data-filter="true" data-inset="true" data-input="#searchForContact"
+            data-split-icon="phone">
+
+        </ul>
+
+    </div>
+    <div data-role="footer" data-position="fixed">
+        <h5>&copy; Arch. 2021</h5>
+    </div>
+</div>
+<!--    PPOOOOOOOOOOOOOOOOP UPPPPPPPPPPPPPPPPP-->
 
 <!--
 
@@ -57,84 +58,95 @@
 -->
 
 
-
-
-    <!--   -------------SECOND PAGE ------------------>
-    <div data-role="page" data-theme="d" id="addContact">
-        <div data-role="header" data-position="inline">
-            <h1>Add Contact</h1>
-            <div data-role="navbar">
-                <ul>
-                    <li><a href="#contactsPage" data-icon="user" data-transition="flow">Home</a></li>
-                    <li><a href="#addContact" data-icon="plus" data-transition="flow"> Add Contact</a></li>
-                </ul>
-            </div>
-
-        </div>
-
-        <div data-role="main" class="ui-content">
-
-
-            <form id="addForm" class="validate">
-                <div data-role="fieldcontain">
-                    <label for="nameField">Name</label>
-                    <input name="nameField" type="text" id="nameField" placeholder="Enter Contact Name" maxlength="15">
-                    <p id="nameFieldErrArea"></p>
-                </div>
-
-                <div data-role="fieldcontain">
-                    <label for="phoneField">Phone</label>
-                    <input name="phoneField" type="tel" id="phoneField" placeholder="01xxxxxxxxx" maxlength="11">
-                    <p id="phoneFieldErrArea"></p>
-                </div>
-
-                <div data-role="fieldcontain">
-                    <label for="emailField">Email</label>
-                    <input name="emailField" type="email" id="emailField" placeholder="Enter Contact Email" class="required email">
-                    <p id="emailFieldErrArea"></p>
-                </div>
-
-                <div data-role="fieldcontain">
-                    <label for="genderField">Gender</label>
-                    <select name="genderField" id="genderField" data-theme="d" data-role="flipswitch">
-                        <option value="male">M</option>
-                        <option value="female">F</option>
-                    </select>
-                    <p></p>
-                </div>
-
-                <div class="errText" data-role="fieldcontain">
-                </div>
-
-                <div data-role="fieldcontain" data-type="horizontal">
-
-                    <a class="ui-btn ui-corner-all ui-icon-plus ui-btn-icon-left" data-role="button" data-inline="true" onclick="addContact()">Save</a>
-
-                    <a href="#contactsPage" class="ui-btn ui-corner-all ui-icon-delete ui-btn-icon-left" data-role="button" data-inline="true" onclick="cancelAdding()">Cancel</a>
-
-                </div>
-
-
-            </form>
-
-
-
-        </div>
-
-
-        <div data-role="footer" data-position="fixed">
-
-            <h5>&copy; Arch. 2021</h5>
+<!--   -------------SECOND PAGE ------------------>
+<div data-role="page" data-theme="d" id="addContact">
+    <div data-role="header" data-position="inline">
+        <h1>Add Contact</h1>
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#contactsPage" data-icon="user" data-transition="flow">Home</a></li>
+                <li><a href="#addContact" data-icon="plus" data-transition="flow"> Add Contact</a></li>
+            </ul>
         </div>
 
     </div>
 
+    <div data-role="main" class="ui-content">
 
 
-    <script src="script.js"></script>
-</body></html>
+        <form id="addForm" class="validate">
+            <div data-role="fieldcontain">
+                <label for="nameField">Name</label>
+                <input name="nameField" type="text" id="nameField" placeholder="Enter Contact Name" maxlength="15">
+                <p id="nameFieldErrArea"></p>
+            </div>
+
+            <div data-role="fieldcontain">
+                <label for="phoneField">Phone</label>
+                <input name="phoneField" type="tel" id="phoneField" placeholder="01xxxxxxxxx" maxlength="11">
+                <p id="phoneFieldErrArea"></p>
+            </div>
+
+            <div data-role="fieldcontain">
+                <label for="emailField">Email</label>
+                <input name="emailField" type="email" id="emailField" placeholder="Enter Contact Email"
+                       class="required email">
+                <p id="emailFieldErrArea"></p>
+            </div>
+
+            <div data-role="fieldcontain">
+                <label for="genderField">Gender</label>
+                <select name="genderField" id="genderField" data-theme="d" data-role="flipswitch">
+                    <option value="male">M</option>
+                    <option value="female">F</option>
+                </select>
+                <p></p>
+            </div>
+
+            <div class="errText" data-role="fieldcontain">
+            </div>
+
+            <div data-role="fieldcontain" data-type="horizontal">
+
+                <a class="ui-btn ui-corner-all ui-icon-plus ui-btn-icon-left" data-role="button" data-inline="true"
+                   onclick="addContact()">Save</a>
+
+                <a href="#contactsPage" class="ui-btn ui-corner-all ui-icon-delete ui-btn-icon-left" data-role="button"
+                   data-inline="true" onclick="cancelAdding()">Cancel</a>
+
+            </div>
 
 
+        </form>
+
+
+    </div>
+
+
+    <div data-role="footer" data-position="fixed">
+
+        <h5>&copy; Arch. 2021</h5>
+    </div>
+
+</div>
+
+<!--  CONTACT DETAILS  -->
+<div data-role="page"  data-back-btn-text = "Previous" data-icon="back" data-theme="d" id="contactDetails">
+    <div data-role="header" data-position="inline" data-add-back-btn = "true">
+        <h1 id="contactName" data-icon="back">Contact Name</h1>
+
+
+    </div>
+
+    <div data-role="footer" data-position="fixed">
+        <h5>&copy; Arch. 2021</h5>
+    </div>
+</div>
+
+
+<script src="script.js"></script>
+</body>
+</html>
 
 
 <!-- <p>Your theme was successfully downloaded. You can use this page as a reference for how to link it up!</p>
