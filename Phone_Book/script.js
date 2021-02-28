@@ -135,6 +135,10 @@ $('#deleteButton').on("click", function () {
     $.mobile.navigate("#contactsPage");
 
 });
+
+
+
+
 function addContact() {
 
     //Get all fields, extract data frpm them
@@ -202,68 +206,84 @@ function addContact() {
 
 }
 
-function updateContact() {
 
+function switchToUpdate(){
+    
     console.log("*******************udate*****************");
 
     var nameFieldUpdate = $('#nameFieldUpdate');
     var phoneFieldUpdate = $('#phoneFieldUpdate');
     var emailFieldUpdate = $('#emailFieldUpdate');
     var genderFieldUpdate = $('#genderFieldUpdate');
+    
+    
+    var toUpdateContact = getContactByID(currentContactID);
+        
+    
+    nameFieldUpdate.val(toUpdateContact.name);
+    phoneFieldUpdate.val(toUpdateContact.phone);
+    emailFieldUpdate.val(toUpdateContact.email);
+    
+    
+    genderFieldUpdate.val(toUpdateContact.gender).change();
 
-    //Get all fields, extract data frpm them
-    var name = nameFieldUpdate.val();
-    var phone = phoneFieldUpdate.val();
-    var email = emailFieldUpdate.val();
-    var gender = genderFieldUpdate.val();
-    var imgUrl = "";
+    
+}
 
-    if (gender == "male") {
-        imgUrl = "./assets/cyber.jpg";
-    } else if (gender == "female") {
-        imgUrl = "./assets/van.jpg";
-    }
+function updateContact() {
+
+    
+    
+     var nameFieldUpdate = $('#nameFieldUpdate');
+    var phoneFieldUpdate = $('#phoneFieldUpdate');
+    var emailFieldUpdate = $('#emailFieldUpdate');
+    var genderFieldUpdate = $('#genderFieldUpdate');
+    
+    
 
     var isFormValid = true;
 
-       //
-       // if (name == "") {
-       //     $("#nameFieldErrAreaUpdate").text("Name Is required");
-       //     isFormValid = false;
-       // } else {
-       //     $("#nameFieldErrAreaUpdate").empty();
-       // }
-       // if (phone == "") {
-       //
-       //     $("#phoneFieldErrAreaUpdate").text("Phone Is required");
-       //     isFormValid = false;
-       // } else if (!isPhoneValid(phone)) {
-       //     $("#phoneFieldErrAreaUpdate").text("Phone is not valid");
-       //     isFormValid = false;
-       // } else {
-       //     $("#phoneFieldErrAreaUpdate").empty();
-       // }
-       //
-       // if (email == "") {
-       //     $("#emailFieldErrAreaUpdate").text("Email Is required");
-       //     isFormValid = false;
-       // } else if (!isEmailValid(email)) {
-       //     $("#emailFieldErrAreaUpdate").text("Email Is not valid");
-       //     isFormValid = false;
-       // } else {
-       //     $("#emailFieldErrAreaUpdate").empty();
-       // }
-       //
-       // if (!isFormValid) {
-       //     return;
-       // }
+       
+        if (name == "") {
+            $("#nameFieldErrAreaUpdate").text("Name Is required");
+            isFormValid = false;
+        } else {
+            $("#nameFieldErrAreaUpdate").empty();
+        }
+        if (phone == "") {
+       
+            $("#phoneFieldErrAreaUpdate").text("Phone Is required");
+            isFormValid = false;
+        } else if (!isPhoneValid(phone)) {
+            $("#phoneFieldErrAreaUpdate").text("Phone is not valid");
+            isFormValid = false;
+        } else {
+            $("#phoneFieldErrAreaUpdate").empty();
+        }
+       
+        if (email == "") {
+            $("#emailFieldErrAreaUpdate").text("Email Is required");
+            isFormValid = false;
+        } else if (!isEmailValid(email)) {
+            $("#emailFieldErrAreaUpdate").text("Email Is not valid");
+            isFormValid = false;
+        } else {
+            $("#emailFieldErrAreaUpdate").empty();
+        }
+       
+        if (!isFormValid) {
+            return;
+        }
+    
+    
+    
 
 
-    var toUpdateContact = getContactByID(currentContactID);
-    toUpdateContact.name = name;
-    toUpdateContact.phone = phone;
-    toUpdateContact.email = email;
-    toUpdateContact.gender = gender;
+     var toUpdateContact = getContactByID(currentContactID);
+    toUpdateContact.name = nameFieldUpdate.val();
+    toUpdateContact.phone = phoneFieldUpdate.val();
+    toUpdateContact.email = emailFieldUpdate.val();
+    toUpdateContact.gender = genderFieldUpdate.val();
 
 
     //Save new List in Local Storage
