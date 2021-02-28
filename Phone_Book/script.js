@@ -240,6 +240,10 @@ function updateContact() {
     var genderFieldUpdate = $('#genderFieldUpdate');
     
     
+    var name = nameFieldUpdate.val();
+    var phone = phoneFieldUpdate.val();
+    var email = emailFieldUpdate.val();
+    
 
     var isFormValid = true;
 
@@ -284,6 +288,13 @@ function updateContact() {
     toUpdateContact.phone = phoneFieldUpdate.val();
     toUpdateContact.email = emailFieldUpdate.val();
     toUpdateContact.gender = genderFieldUpdate.val();
+    
+    
+      if (toUpdateContact.gender == "male") {
+        toUpdateContact.imgUrl = "./assets/cyber.jpg";
+    } else if (toUpdateContact.gender == "female") {
+        toUpdateContact.imgUrl = "./assets/van.jpg";
+    }
 
 
     //Save new List in Local Storage
