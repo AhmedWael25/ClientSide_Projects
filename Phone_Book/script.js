@@ -1,4 +1,4 @@
-var lastId = 1;
+var lastId = 0;
 var contactList = [];
 
 var nameField = $('#nameField');
@@ -6,6 +6,7 @@ var phoneField = $('#phoneField');
 var emailField = $('#emailField');
 var genderField = $('#genderField');
 
+var currentContactID;
 
 
 function Contact(id, name, phone, email, gender, imgUrl) {
@@ -18,13 +19,12 @@ function Contact(id, name, phone, email, gender, imgUrl) {
 }
 
 
-
 window.onload = function () {
 
 //    localStorage.clear();
-    
+
     fetchContactsFromStorage();
-    
+
     //Display All Contacts From Page , Given The List
 
 }
@@ -40,9 +40,9 @@ function fetchContactsFromStorage() {
     if (contactList != null) {
         console.log("Found contacts in storage")
 
-        lastId = contactList[contactList.length - 1].id + 1;
+        lastId = contactList[contactList.length - 1].id;
         displayAllContacts(contactList);
-        console.log("LAST ID" + lastId);
+        console.log("LAST ID " + lastId);
     } else {
         console.log("No contacts in storage")
         contactList = [];
@@ -58,35 +58,57 @@ function displayAllContacts(list) {
 
     for (var i = 0; i < list.length; i++) {
 
-       var html = " <li id='" + list[i].id + "' class='contact' data-filtertext='" + list[i].name + "' onclick='selectContact()'><a href='#contactDetails' ><img class='contactAvatar' src='" + list[i].imgUrl + "' ><h2>" + list[i].name + "</h2></a> <a href='tel:"+list[i].phone+"' data-rel='popup' data-position-to='window' data-transition='pop'>Purchase album</a></li >";
+        var html = " <li id='" + list[i].id + "' class='contact' data-filtertext='" + list[i].name + "' ><a onclick='selectContact()' href='#contactDetails' ><img class='contactAvatar' src='" + list[i].imgUrl + "' ><h2>" + list[i].name + "</h2></a> <a href='tel:" + list[i].phone + "' data-rel='popup' data-position-to='window' data-transition='pop'>Purchase album</a></li >";
 
+        console.log("+++++++++ IDssssssssss " + list[i].id);
+        console.log("+++++++++ index " + i);
         ulList.append(html).listview("refresh");
     }
 
 }
 
-function selectContact(){
+function selectContact() {
 
-         var contactName = $("#contactName");
-         var contactAvatar = $("#contactImage");
-         var deleteButton = $("#deleteContactPopup");
-         var updateButton = $("#updateContactAnchor");
-         var callButton = $("#callContactAnchor");
+    var contactName = $("#contactName");
+    var contactAvatar = $("#contactImage");
+    var deleteButton = $("#deleteContactPopup");
+    var updateButton = $("#updateContactAnchor");
+    var callButton = $("#callContactAnchor");
 
-         var id = event.target.parentElement.id;
+    currentContactID = event.target.parentElement.id;
 
-         contactName.text(contactList[id].name);
-         contactAvatar.attr("src",contactList[id].imgUrl);
+        var contact = getContactByID(currentContactID);
+        contactName.text(contact.name);
+        contactAvatar.attr("src", contact.imgUrl);
+
+}
+
+function getContactByID(ID) {
+    for (var i = 0; i < contactList.length; i++) {
+        if (contactList[i].id == ID) {
+
+            return contactList[i];
+        }
+    }
+}
 
 //         --------Handling Clicks----------
 
-   $('#deleteContactAnchor').click(function (e) {
 
-       console.log("Delete button cliced "+e.target.parentElement);
+$('#deleteButton').on("click", function () {
+    console.log("delete was cliked **********************************");
 
-   });
+    console.log("deleting element " + currentContactID);
+    contactList.splice(currentContactID, 1);
 
-}
+    localStorage.setItem("contacts", JSON.stringify(contactList));
+
+    contactList = JSON.parse(localStorage.getItem("contacts"));
+
+    displayAllContacts(contactList);
+    $.mobile.navigate("#contactsPage");
+
+});
 
 
 function addContact() {
@@ -111,7 +133,7 @@ function addContact() {
     if (name == "") {
         $("#nameFieldErrArea").text("Name Is required");
         isFormValid = false;
-    }else{
+    } else {
         $("#nameFieldErrArea").empty();
     }
     if (phone == "") {
@@ -121,7 +143,7 @@ function addContact() {
     } else if (!isPhoneValid(phone)) {
         $("#phoneFieldErrArea").text("Phone is not valid");
         isFormValid = false;
-    }else{
+    } else {
         $("#phoneFieldErrArea").empty();
     }
 
@@ -131,21 +153,18 @@ function addContact() {
     } else if (!isEmailValid(email)) {
         $("#emailFieldErrArea").text("Email Is not valid");
         isFormValid = false;
-    }else{
+    } else {
         $("#emailFieldErrArea").empty();
     }
 
-    if(!isFormValid){
+    if (!isFormValid) {
         return;
     }
 
 
-
-
-
     //Contact Should take last avail ID
-    var newContact = new Contact(lastId++, name, phone, email, gender, imgUrl);
-
+    var newContact = new Contact(lastId, name, phone, email, gender, imgUrl);
+    lastId++;
     console.log("THE NE CONATCT" + newContact);
     //Add New contact to list
     contactList.push(newContact);
@@ -155,8 +174,9 @@ function addContact() {
     displayAllContacts(contactList);
     //Clear all inputs
     clearFormInputs();
-    
+
     window.location.href = '#contactsPage';
+
 }
 
 function appendContactToListView(newContact) {
@@ -174,7 +194,6 @@ function clearFormInputs() {
     $('#emailField').val("");
     $('#genderField').val("male").change();
 }
-
 
 
 //============== VALIDATIONS======================
