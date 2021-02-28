@@ -81,8 +81,18 @@ function selectContact() {
     var deleteButton = $("#deleteContactPopup");
     var updateButton = $("#updateContactAnchor");
     var callButton = $("#callContactAnchor");
+    
+    
+    if(event.target.tagName.toLowerCase() === 'h2'){
+        console.log("h2");
+        currentContactID = event.target.parentElement.parentElement.id;
+    }else if(event.target.tagName.toLowerCase() === 'img'){
+        currentContactID = event.target.parentElement.parentElement.id;
+    }else{
+        
+        currentContactID = event.target.parentElement.id;
+    }
 
-    currentContactID = event.target.parentElement.id;
 
 
     console.log(currentContactID);
@@ -146,37 +156,37 @@ function addContact() {
 
     var isFormValid = true;
 
-    //
-    //    if (name == "") {
-    //        $("#nameFieldErrArea").text("Name Is required");
-    //        isFormValid = false;
-    //    } else {
-    //        $("#nameFieldErrArea").empty();
-    //    }
-    //    if (phone == "") {
-    //
-    //        $("#phoneFieldErrArea").text("Phone Is required");
-    //        isFormValid = false;
-    //    } else if (!isPhoneValid(phone)) {
-    //        $("#phoneFieldErrArea").text("Phone is not valid");
-    //        isFormValid = false;
-    //    } else {
-    //        $("#phoneFieldErrArea").empty();
-    //    }
-    //
-    //    if (email == "") {
-    //        $("#emailFieldErrArea").text("Email Is required");
-    //        isFormValid = false;
-    //    } else if (!isEmailValid(email)) {
-    //        $("#emailFieldErrArea").text("Email Is not valid");
-    //        isFormValid = false;
-    //    } else {
-    //        $("#emailFieldErrArea").empty();
-    //    }
-    //
-    //    if (!isFormValid) {
-    //        return;
-    //    }
+    
+        if (name == "") {
+            $("#nameFieldErrArea").text("Name Is required");
+            isFormValid = false;
+        } else {
+            $("#nameFieldErrArea").empty();
+        }
+        if (phone == "") {
+    
+            $("#phoneFieldErrArea").text("Phone Is required");
+            isFormValid = false;
+        } else if (!isPhoneValid(phone)) {
+            $("#phoneFieldErrArea").text("Phone is not valid");
+            isFormValid = false;
+        } else {
+            $("#phoneFieldErrArea").empty();
+        }
+    
+        if (email == "") {
+            $("#emailFieldErrArea").text("Email Is required");
+            isFormValid = false;
+        } else if (!isEmailValid(email)) {
+            $("#emailFieldErrArea").text("Email Is not valid");
+            isFormValid = false;
+        } else {
+            $("#emailFieldErrArea").empty();
+        }
+    
+        if (!isFormValid) {
+            return;
+        }
 
 
     //Contact Should take last avail ID
