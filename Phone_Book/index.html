@@ -61,7 +61,7 @@
 <!--   -------------SECOND PAGE ------------------>
 <div data-role="page" data-theme="d" id="addContact">
     <div data-role="header" data-position="inline">
-        <h1>Add Contact</h1>
+        <h1 id="addContactHeader">Add Contact</h1>
         <div data-role="navbar">
             <ul>
                 <li><a href="#contactsPage" data-icon="user" data-transition="flow">Home</a></li>
@@ -130,6 +130,77 @@
 
 </div>
 
+<!--   -------------Update PAGE ------------------>
+
+<div data-role="page" data-theme="d" id="updateContact">
+    <div data-role="header" data-position="inline">
+        <h1 id="updateContactHeader">Update Contact</h1>
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#contactsPage" data-icon="user" data-transition="flow">Home</a></li>
+            </ul>
+        </div>
+
+    </div>
+
+    <div data-role="main" class="ui-content">
+
+
+        <form id="updateForm" class="validate">
+            <div data-role="fieldcontain">
+                <label for="nameField">Name</label>
+                <input name="nameField" type="text" id="nameFieldUpdate" placeholder="Enter Contact Name" maxlength="15">
+                <p id="nameFieldErrAreaUpdate"></p>
+            </div>
+
+            <div data-role="fieldcontain">
+                <label for="phoneField">Phone</label>
+                <input name="phoneField" type="tel" id="phoneFieldUpdate" placeholder="01xxxxxxxxx" maxlength="11">
+                <p id="phoneFieldErrAreaUpdate"></p>
+            </div>
+
+            <div data-role="fieldcontain">
+                <label for="emailField">Email</label>
+                <input name="emailField" type="email" id="emailFieldUpdate" placeholder="Enter Contact Email"
+                       class="required email">
+                <p id="emailFieldErrAreaUpdate"></p>
+            </div>
+
+            <div data-role="fieldcontain">
+                <label for="genderField">Gender</label>
+                <select name="genderField" id="genderFieldUpdate" data-theme="d" data-role="flipswitch">
+                    <option value="male">M</option>
+                    <option value="female">F</option>
+                </select>
+                <p></p>
+            </div>
+
+            <div class="errText" data-role="fieldcontain">
+            </div>
+
+            <div data-role="fieldcontain" data-type="horizontal">
+
+                <a class="ui-btn ui-corner-all ui-icon-plus ui-btn-icon-left" data-role="button" data-inline="true"
+                   onclick="updateContact()">Update</a>
+
+                <a href="#contactsPage" class="ui-btn ui-corner-all ui-icon-delete ui-btn-icon-left" data-role="button"
+                   data-inline="true" onclick="cancelUpdating()">Cancel</a>
+
+            </div>
+
+
+        </form>
+
+
+    </div>
+
+
+    <div data-role="footer" data-position="fixed">
+
+        <h5>&copy; Arch. 2021</h5>
+    </div>
+
+</div>
 <!--  CONTACT DETAILS  -->
 <div data-role="page" data-back-btn-text="Previous" data-icon="back" data-theme="d" id="contactDetails">
     <div data-role="header" data-position="inline" data-add-back-btn="true">
@@ -142,7 +213,7 @@
 
     <div data-role="controlgroup" align="center" data-type="horizontal" data-mini="true">
         <a href="#popupDialog" data-rel ="popup" id="deleteContactPopup" data-position-to="window"  data-transition="pop"  class="ui-btn ui-corner-all ui-icon-delete ui-btn-icon-notext">Delete</a>
-        <a id="updateContactAnchor" href="#" class="ui-btn ui-corner-all ui-icon-edit ui-btn-icon-notext">Update </a>
+        <a id="updateContactAnchor" href="#updateContact" class="ui-btn ui-corner-all ui-icon-edit ui-btn-icon-notext">Update </a>
         <a id="callContactAnchor" href="#" class="ui-btn ui-corner-all ui-icon-phone ui-btn-icon-notext">Call</a>
     </div>
 
