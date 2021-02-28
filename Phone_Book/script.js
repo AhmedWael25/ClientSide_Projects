@@ -67,15 +67,21 @@ function selectContact(){
 
          var contactName = $("#contactName");
          var contactAvatar = $("#contactImage");
+         var deleteButton = $("#deleteContactAnchor");
+         var updateButton = $("#updateContactAnchor");
+         var callButton = $("#callContactAnchor");
 
-         console.log(event.target);
-        var id = event.target.parentElement.id;
-
+         var id = event.target.parentElement.id;
 
          contactName.text(contactList[id].name);
-         contactAvatar.attr("src",contactList[id].imgUrl)
+         contactAvatar.attr("src",contactList[id].imgUrl);
 
+//         --------Handling Clicks----------
 
+    deleteButton.click(function (e) {
+
+        Alert
+    });
 
 }
 
