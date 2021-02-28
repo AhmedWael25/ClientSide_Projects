@@ -78,7 +78,6 @@ function selectContact() {
 
     var contactName = $("#contactName");
     var contactAvatar = $("#contactImage");
-    var deleteButton = $("#deleteContactPopup");
     var updateButton = $("#updateContactAnchor");
     var callButton = $("#callContactAnchor");
     
@@ -136,12 +135,9 @@ $('#deleteButton').on("click", function () {
     $.mobile.navigate("#contactsPage");
 
 });
-
-
 function addContact() {
 
-
-    //Get all fields, extract data frpm them 
+    //Get all fields, extract data frpm them
     var name = nameField.val();
     var phone = phoneField.val();
     var email = emailField.val();
@@ -195,6 +191,81 @@ function addContact() {
     console.log("THE NE CONATCT" + newContact);
     //Add New contact to list
     contactList.push(newContact);
+    //Save new List in Local Storage
+    localStorage.setItem("contacts", JSON.stringify(contactList));
+    //Refresh The HTML listview
+    displayAllContacts(contactList);
+    //Clear all inputs
+    clearFormInputs();
+
+    window.location.href = '#contactsPage';
+
+}
+
+function updateContact() {
+
+    console.log("*******************udate*****************");
+
+    var nameFieldUpdate = $('#nameFieldUpdate');
+    var phoneFieldUpdate = $('#phoneFieldUpdate');
+    var emailFieldUpdate = $('#emailFieldUpdate');
+    var genderFieldUpdate = $('#genderFieldUpdate');
+
+    //Get all fields, extract data frpm them
+    var name = nameFieldUpdate.val();
+    var phone = phoneFieldUpdate.val();
+    var email = emailFieldUpdate.val();
+    var gender = genderFieldUpdate.val();
+    var imgUrl = "";
+
+    if (gender == "male") {
+        imgUrl = "./assets/cyber.jpg";
+    } else if (gender == "female") {
+        imgUrl = "./assets/van.jpg";
+    }
+
+    var isFormValid = true;
+
+       //
+       // if (name == "") {
+       //     $("#nameFieldErrAreaUpdate").text("Name Is required");
+       //     isFormValid = false;
+       // } else {
+       //     $("#nameFieldErrAreaUpdate").empty();
+       // }
+       // if (phone == "") {
+       //
+       //     $("#phoneFieldErrAreaUpdate").text("Phone Is required");
+       //     isFormValid = false;
+       // } else if (!isPhoneValid(phone)) {
+       //     $("#phoneFieldErrAreaUpdate").text("Phone is not valid");
+       //     isFormValid = false;
+       // } else {
+       //     $("#phoneFieldErrAreaUpdate").empty();
+       // }
+       //
+       // if (email == "") {
+       //     $("#emailFieldErrAreaUpdate").text("Email Is required");
+       //     isFormValid = false;
+       // } else if (!isEmailValid(email)) {
+       //     $("#emailFieldErrAreaUpdate").text("Email Is not valid");
+       //     isFormValid = false;
+       // } else {
+       //     $("#emailFieldErrAreaUpdate").empty();
+       // }
+       //
+       // if (!isFormValid) {
+       //     return;
+       // }
+
+
+    var toUpdateContact = getContactByID(currentContactID);
+    toUpdateContact.name = name;
+    toUpdateContact.phone = phone;
+    toUpdateContact.email = email;
+    toUpdateContact.gender = gender;
+
+
     //Save new List in Local Storage
     localStorage.setItem("contacts", JSON.stringify(contactList));
     //Refresh The HTML listview
