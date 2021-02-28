@@ -6,6 +6,8 @@ var phoneField = $('#phoneField');
 var emailField = $('#emailField');
 var genderField = $('#genderField');
 
+
+
 function Contact(id, name, phone, email, gender, imgUrl) {
     this.id = id;
     this.name = name;
@@ -56,7 +58,7 @@ function displayAllContacts(list) {
 
     for (var i = 0; i < list.length; i++) {
 
-       var html = " <li id='" + list[i].id + "' class='contact' data-filtertext='" + list[i].name + "'><a href='#contactDetails' onclick='selectContact()'><img class='contactAvatar' src='" + list[i].imgUrl + "' ><h2>" + list[i].name + "</h2></a> <a href='tel:"+list[i].phone+"' data-rel='popup' data-position-to='window' data-transition='pop'>Purchase album</a></li >";
+       var html = " <li id='" + list[i].id + "' class='contact' data-filtertext='" + list[i].name + "' onclick='selectContact()'><a href='#contactDetails' ><img class='contactAvatar' src='" + list[i].imgUrl + "' ><h2>" + list[i].name + "</h2></a> <a href='tel:"+list[i].phone+"' data-rel='popup' data-position-to='window' data-transition='pop'>Purchase album</a></li >";
 
         ulList.append(html).listview("refresh");
     }
@@ -67,7 +69,7 @@ function selectContact(){
 
          var contactName = $("#contactName");
          var contactAvatar = $("#contactImage");
-         var deleteButton = $("#deleteContactAnchor");
+         var deleteButton = $("#deleteContactPopup");
          var updateButton = $("#updateContactAnchor");
          var callButton = $("#callContactAnchor");
 
@@ -78,10 +80,11 @@ function selectContact(){
 
 //         --------Handling Clicks----------
 
-    deleteButton.click(function (e) {
+   $('#deleteContactAnchor').click(function (e) {
 
-        Alert
-    });
+       console.log("Delete button cliced "+e.target.parentElement);
+
+   });
 
 }
 
