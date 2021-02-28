@@ -21,7 +21,7 @@ function Contact(id, name, phone, email, gender, imgUrl) {
 
 window.onload = function () {
 
-//    localStorage.clear();
+    //    localStorage.clear();
 
     fetchContactsFromStorage();
 
@@ -40,9 +40,14 @@ function fetchContactsFromStorage() {
     if (contactList != null) {
         console.log("Found contacts in storage")
 
-        lastId = contactList[contactList.length - 1].id;
-        displayAllContacts(contactList);
-        console.log("LAST ID " + lastId);
+        if (contactList.length === 0) {
+            lastId = 0;
+        } else {
+            lastId = contactList[contactList.length - 1].id + 1;
+            displayAllContacts(contactList);
+            console.log("LAST ID " + lastId);
+        }
+
     } else {
         console.log("No contacts in storage")
         contactList = [];
@@ -60,14 +65,16 @@ function displayAllContacts(list) {
 
         var html = " <li id='" + list[i].id + "' class='contact' data-filtertext='" + list[i].name + "' ><a onclick='selectContact()' href='#contactDetails' ><img class='contactAvatar' src='" + list[i].imgUrl + "' ><h2>" + list[i].name + "</h2></a> <a href='tel:" + list[i].phone + "' data-rel='popup' data-position-to='window' data-transition='pop'>Purchase album</a></li >";
 
-        console.log("+++++++++ IDssssssssss " + list[i].id);
-        console.log("+++++++++ index " + i);
+        //        console.log("+++++++++ IDssssssssss " + list[i].id);
+        //        console.log("+++++++++ index " + i);
         ulList.append(html).listview("refresh");
     }
 
 }
 
 function selectContact() {
+
+
 
     var contactName = $("#contactName");
     var contactAvatar = $("#contactImage");
@@ -77,9 +84,13 @@ function selectContact() {
 
     currentContactID = event.target.parentElement.id;
 
-        var contact = getContactByID(currentContactID);
-        contactName.text(contact.name);
-        contactAvatar.attr("src", contact.imgUrl);
+
+    console.log(currentContactID);
+
+
+    var contact = getContactByID(currentContactID);
+    contactName.text(contact.name);
+    contactAvatar.attr("src", contact.imgUrl);
 
 }
 
@@ -96,13 +107,19 @@ function getContactByID(ID) {
 
 
 $('#deleteButton').on("click", function () {
+
     console.log("delete was cliked **********************************");
 
     console.log("deleting element " + currentContactID);
-    contactList.splice(currentContactID, 1);
+
+    //TODO REFACTOR
+    console.log("asaas" + currentContactID);
+
+    delEmployeeById(currentContactID);
 
     localStorage.setItem("contacts", JSON.stringify(contactList));
 
+    ///TODO REFACTOR
     contactList = JSON.parse(localStorage.getItem("contacts"));
 
     displayAllContacts(contactList);
@@ -129,37 +146,37 @@ function addContact() {
 
     var isFormValid = true;
 
-
-    if (name == "") {
-        $("#nameFieldErrArea").text("Name Is required");
-        isFormValid = false;
-    } else {
-        $("#nameFieldErrArea").empty();
-    }
-    if (phone == "") {
-
-        $("#phoneFieldErrArea").text("Phone Is required");
-        isFormValid = false;
-    } else if (!isPhoneValid(phone)) {
-        $("#phoneFieldErrArea").text("Phone is not valid");
-        isFormValid = false;
-    } else {
-        $("#phoneFieldErrArea").empty();
-    }
-
-    if (email == "") {
-        $("#emailFieldErrArea").text("Email Is required");
-        isFormValid = false;
-    } else if (!isEmailValid(email)) {
-        $("#emailFieldErrArea").text("Email Is not valid");
-        isFormValid = false;
-    } else {
-        $("#emailFieldErrArea").empty();
-    }
-
-    if (!isFormValid) {
-        return;
-    }
+    //
+    //    if (name == "") {
+    //        $("#nameFieldErrArea").text("Name Is required");
+    //        isFormValid = false;
+    //    } else {
+    //        $("#nameFieldErrArea").empty();
+    //    }
+    //    if (phone == "") {
+    //
+    //        $("#phoneFieldErrArea").text("Phone Is required");
+    //        isFormValid = false;
+    //    } else if (!isPhoneValid(phone)) {
+    //        $("#phoneFieldErrArea").text("Phone is not valid");
+    //        isFormValid = false;
+    //    } else {
+    //        $("#phoneFieldErrArea").empty();
+    //    }
+    //
+    //    if (email == "") {
+    //        $("#emailFieldErrArea").text("Email Is required");
+    //        isFormValid = false;
+    //    } else if (!isEmailValid(email)) {
+    //        $("#emailFieldErrArea").text("Email Is not valid");
+    //        isFormValid = false;
+    //    } else {
+    //        $("#emailFieldErrArea").empty();
+    //    }
+    //
+    //    if (!isFormValid) {
+    //        return;
+    //    }
 
 
     //Contact Should take last avail ID
@@ -208,9 +225,14 @@ function isEmailValid(email) {
     return regex.test(email);
 }
 
-function isNameValid(name) {
+function delEmployeeById(id) {
+
+
+    for (var i = 0; i < contactList.length; i++) {
+
+        if (contactList[i].id == id) {
+            contactList.splice(i, 1)
+        }
+    }
 
 }
-
-
-
